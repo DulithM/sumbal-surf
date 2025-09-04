@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -6,8 +8,26 @@ import { Separator } from "@/components/ui/separator"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Users, Waves, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function EmployeeSignupPage() {
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSignup = async () => {
+    setIsLoading(true)
+    
+    try {
+      // Demo signup - simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      router.push("/dashboard/employee")
+    } catch (error) {
+      console.error("Signup failed:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
@@ -36,7 +56,7 @@ export default function EmployeeSignupPage() {
             <CardDescription>Create your account to access exclusive dining discounts</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <form className="space-y-4">
+            <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="company-code">Company Code</Label>
                 <Input id="company-code" placeholder="Enter your company code" className="font-mono" required />
@@ -92,10 +112,10 @@ export default function EmployeeSignupPage() {
                 </Label>
               </div>
 
-              <Button type="submit" className="w-full" size="lg">
-                Create Employee Account
+              <Button onClick={handleSignup} className="w-full" size="lg" disabled={isLoading}>
+                {isLoading ? "Creating Account..." : "Create Employee Account"}
               </Button>
-            </form>
+            </div>
 
             <Separator />
 
