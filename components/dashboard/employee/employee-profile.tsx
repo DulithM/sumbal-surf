@@ -89,7 +89,7 @@ export function EmployeeProfile() {
             <div className="space-y-2">
               <Label>Monthly Allowance</Label>
               <div className="p-3 bg-primary/10 rounded-lg">
-                <p className="font-medium text-primary">$500.00</p>
+                <p className="font-medium text-primary">Rs. 15,000</p>
               </div>
             </div>
           </CardContent>

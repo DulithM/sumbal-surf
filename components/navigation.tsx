@@ -53,21 +53,21 @@ export function Navigation() {
                 Group Orders
               </Link>
             </nav>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
               <Button 
                 variant="ghost" 
                 size="sm" 
                 asChild 
                 className="text-foreground hover:text-[#26c175] hover:bg-transparent transition-colors font-medium"
               >
-                <Link href="/auth/employee/login">Employee Portal</Link>
+                <Link href="/auth/employee/login">Employee</Link>
               </Button>
               <Button 
                 size="sm" 
                 asChild 
                 className="bg-[#26c175] text-white hover:bg-[#26c175]/90 shadow-sm font-medium"
               >
-                <Link href="/auth/company/login">Corporate Login</Link>
+                <Link href="/auth/company/login">Corporate</Link>
               </Button>
             </div>
           </div>

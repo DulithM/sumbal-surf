@@ -34,7 +34,7 @@ export function UsageAnalytics() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$34.20</div>
+            <div className="text-2xl font-bold">Rs. 1,026</div>
             <div className="flex items-center text-xs text-muted-foreground">
               <TrendingUp className="w-3 h-3 mr-1 text-secondary" />
               <span className="text-secondary">+8%</span> from last month
@@ -154,7 +154,7 @@ export function UsageAnalytics() {
                   <span className="font-medium">89%</span>
                 </div>
                 <Progress value={89} className="h-2" />
-                <p className="text-xs text-muted-foreground">67 employees, $2,340 spent</p>
+                <p className="text-xs text-muted-foreground">67 employees, Rs. 70,200 spent</p>
               </div>
 
               <div className="space-y-2">
@@ -163,7 +163,7 @@ export function UsageAnalytics() {
                   <span className="font-medium">76%</span>
                 </div>
                 <Progress value={76} className="h-2" />
-                <p className="text-xs text-muted-foreground">45 employees, $1,890 spent</p>
+                <p className="text-xs text-muted-foreground">45 employees, Rs. 56,700 spent</p>
               </div>
 
               <div className="space-y-2">
@@ -172,7 +172,7 @@ export function UsageAnalytics() {
                   <span className="font-medium">82%</span>
                 </div>
                 <Progress value={82} className="h-2" />
-                <p className="text-xs text-muted-foreground">23 employees, $980 spent</p>
+                <p className="text-xs text-muted-foreground">23 employees, Rs. 29,400 spent</p>
               </div>
 
               <div className="space-y-2">
@@ -181,7 +181,7 @@ export function UsageAnalytics() {
                   <span className="font-medium">94%</span>
                 </div>
                 <Progress value={94} className="h-2" />
-                <p className="text-xs text-muted-foreground">8 employees, $420 spent</p>
+                <p className="text-xs text-muted-foreground">8 employees, Rs. 12,600 spent</p>
               </div>
             </div>
           </CardContent>
@@ -256,7 +256,7 @@ export function UsageAnalytics() {
                   <span className="text-sm font-medium">Employee Savings</span>
                   <TrendingUp className="w-4 h-4 text-secondary" />
                 </div>
-                <div className="text-2xl font-bold text-secondary">$12,450</div>
+                <div className="text-2xl font-bold text-secondary">Rs. 373,500</div>
                 <p className="text-xs text-muted-foreground">Total saved this month</p>
               </div>
 
@@ -265,7 +265,7 @@ export function UsageAnalytics() {
                   <span className="text-sm font-medium">Program Cost</span>
                   <DollarSign className="w-4 h-4 text-primary" />
                 </div>
-                <div className="text-2xl font-bold text-primary">$8,420</div>
+                <div className="text-2xl font-bold text-primary">Rs. 252,600</div>
                 <p className="text-xs text-muted-foreground">Company contribution</p>
               </div>
 

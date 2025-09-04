@@ -13,7 +13,7 @@ const employees = [
     email: "sarah.johnson@acme.com",
     status: "Active",
     joinDate: "2024-01-15",
-    totalSpent: "$340",
+    totalSpent: "Rs. 10,200",
     lastOrder: "2 days ago",
   },
   {
@@ -22,7 +22,7 @@ const employees = [
     email: "mike.chen@acme.com",
     status: "Active",
     joinDate: "2024-02-01",
-    totalSpent: "$180",
+    totalSpent: "Rs. 5,400",
     lastOrder: "1 week ago",
   },
   {
@@ -31,7 +31,7 @@ const employees = [
     email: "emily.rodriguez@acme.com",
     status: "Pending",
     joinDate: "2024-03-10",
-    totalSpent: "$0",
+    totalSpent: "Rs. 0",
     lastOrder: "Never",
   },
   {
@@ -40,7 +40,7 @@ const employees = [
     email: "david.kim@acme.com",
     status: "Active",
     joinDate: "2023-12-05",
-    totalSpent: "$520",
+    totalSpent: "Rs. 15,600",
     lastOrder: "Yesterday",
   },
 ]

@@ -95,7 +95,7 @@ export function TransactionHistory() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-2xl font-bold text-secondary">$89.20</p>
+              <p className="text-2xl font-bold text-secondary">Rs. 2,676</p>
               <p className="text-sm text-muted-foreground">Total Saved</p>
             </div>
           </CardContent>
@@ -111,7 +111,7 @@ export function TransactionHistory() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-2xl font-bold text-primary">$372.50</p>
+              <p className="text-2xl font-bold text-primary">Rs. 11,175</p>
               <p className="text-sm text-muted-foreground">Total Spent</p>
             </div>
           </CardContent>

@@ -402,7 +402,7 @@ function DiscountAnalytics({ rules }: { rules: DiscountRule[] }) {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-2xl font-bold">$12,450</p>
+              <p className="text-2xl font-bold">Rs. 3,735,000</p>
               <p className="text-sm text-muted-foreground">Total Savings</p>
             </div>
           </CardContent>

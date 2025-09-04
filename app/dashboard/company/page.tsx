@@ -8,6 +8,9 @@ import { CompanyNavigation } from "@/components/company-navigation"
 import { EmployeeManagement } from "@/components/dashboard/company/employee-management"
 import { DiscountManagement } from "@/components/dashboard/company/discount-management"
 import { UsageAnalytics } from "@/components/dashboard/company/usage-analytics"
+import { MealWalletManagement } from "@/components/dashboard/company/meal-wallet-management"
+import { AnalyticsDashboard } from "@/components/dashboard/company/analytics-dashboard"
+import { CorporateReporting } from "@/components/dashboard/company/corporate-reporting"
 
 export default function CompanyDashboardPage() {
   return (
@@ -54,7 +57,7 @@ export default function CompanyDashboardPage() {
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$8,420</div>
+              <div className="text-2xl font-bold">Rs. 2,520,000</div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-secondary">+18%</span> from last month
               </p>
@@ -76,23 +79,25 @@ export default function CompanyDashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Wallet Balance</CardTitle>
+              <CardTitle className="text-sm font-medium">Total Wallet Balance</CardTitle>
               <Wallet className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$15,680</div>
-              <p className="text-xs text-muted-foreground">Available company funds</p>
+              <div className="text-2xl font-bold">Rs. 4,680,000</div>
+              <p className="text-xs text-muted-foreground">Available employee funds</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-7">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="employees">Employees</TabsTrigger>
+            <TabsTrigger value="wallets">Meal Wallets</TabsTrigger>
             <TabsTrigger value="discounts">Discounts</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="reports">Reports</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
@@ -231,12 +236,20 @@ export default function CompanyDashboardPage() {
             <EmployeeManagement />
           </TabsContent>
 
+          <TabsContent value="wallets">
+            <MealWalletManagement companyId="comp_1" />
+          </TabsContent>
+
           <TabsContent value="discounts">
             <DiscountManagement />
           </TabsContent>
 
           <TabsContent value="analytics">
-            <UsageAnalytics />
+            <AnalyticsDashboard companyId="comp_1" />
+          </TabsContent>
+
+          <TabsContent value="reports">
+            <CorporateReporting companyId="comp_1" />
           </TabsContent>
 
           <TabsContent value="settings">

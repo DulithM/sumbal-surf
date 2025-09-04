@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -5,8 +7,29 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Users, Waves, ArrowLeft, Wallet } from "lucide-react"
 import Link from "next/link"
+import { useAuth } from "@/components/auth-provider"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function EmployeeLoginPage() {
+  const { login } = useAuth()
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+    
+    try {
+      // Demo login - any email/password will work
+      await login("employee@company.com", "password", "employee")
+      router.push("/dashboard/employee")
+    } catch (error) {
+      console.error("Login failed:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
@@ -35,22 +58,20 @@ export default function EmployeeLoginPage() {
             <CardDescription>Access your dining benefits and digital wallet</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="employee-email">Email Address</Label>
-                <Input id="employee-email" type="email" placeholder="your.email@company.com" required />
+                <Input id="employee-email" type="email" placeholder="your.email@company.com" defaultValue="employee@company.com" required />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" placeholder="Enter your password" required />
+                <Input id="password" type="password" placeholder="Enter your password" defaultValue="password" required />
               </div>
               <div className="flex items-center justify-between text-sm">
-                <Link href="/auth/employee/forgot-password" className="text-primary hover:underline">
-                  Forgot password?
-                </Link>
+                <span className="text-muted-foreground">Demo: Use any credentials</span>
               </div>
-              <Button type="submit" className="w-full" size="lg">
-                Access My Benefits
+              <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+                {isLoading ? "Signing In..." : "Access My Benefits"}
               </Button>
             </form>
 
