@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Waves } from "lucide-react"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
@@ -67,8 +68,10 @@ export function HeroSection() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
-            <Button size="lg" className="text-lg px-10 py-6 bg-[#26c175] hover:bg-[#26c175]/90 text-white shadow-lg font-semibold">
-              Order Now
+            <Button size="lg" asChild className="text-lg px-10 py-6 bg-[#26c175] hover:bg-[#26c175]/90 text-white shadow-lg font-semibold">
+              <Link href="/payment">
+                Order Now
+              </Link>
             </Button>
             <Button
               variant="outline"

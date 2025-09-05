@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Search, Plus, Star, Clock, Leaf } from "lucide-react"
+import Link from "next/link"
 
 const menuItems = [
   {
@@ -158,9 +159,11 @@ export function MenuBrowser() {
                 </div>
               </div>
 
-              <Button className="w-full">
-                <Plus className="w-4 h-4 mr-2" />
-                Add to Cart
+              <Button className="w-full" asChild>
+                <Link href="/payment">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add to Cart
+                </Link>
               </Button>
             </CardContent>
           </Card>

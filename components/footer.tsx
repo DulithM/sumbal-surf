@@ -10,7 +10,7 @@ export function Footer() {
         { label: "Menu", href: "#menu" },
         { label: "About Us", href: "#about" },
         { label: "Group Orders", href: "#business" },
-        { label: "Order Now", href: "/order" },
+        { label: "Order Now", href: "/payment" },
       ],
     },
     {

@@ -28,6 +28,7 @@ import {
   Calendar
 } from "lucide-react"
 import { formatCurrency, formatAmount, formatDate, formatRelativeTime, calculateMonthlyPayment, validateLoanAmount } from "@/lib/utils"
+import Link from "next/link"
 import type { Employee, Transaction, Loan, MenuItem } from "@/lib/types"
 
 interface MealWalletProps {
@@ -117,7 +118,9 @@ export function MealWallet({ employee }: MealWalletProps) {
         protein: 25,
         carbs: 85,
         fat: 15
-      }
+      },
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       id: "item_2",
@@ -128,7 +131,9 @@ export function MealWallet({ employee }: MealWalletProps) {
       isHealthy: false,
       isTraditional: true,
       isAvailable: true,
-      allergens: ["gluten", "dairy"]
+      allergens: ["gluten", "dairy"],
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       id: "item_3",
@@ -139,7 +144,9 @@ export function MealWallet({ employee }: MealWalletProps) {
       isHealthy: true,
       isTraditional: true,
       isAvailable: true,
-      allergens: []
+      allergens: [],
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       id: "item_4",
@@ -150,7 +157,9 @@ export function MealWallet({ employee }: MealWalletProps) {
       isHealthy: true,
       isTraditional: true,
       isAvailable: true,
-      allergens: []
+      allergens: [],
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
   ]
 
@@ -314,11 +323,13 @@ export function MealWallet({ employee }: MealWalletProps) {
                           )}
                         </div>
                         <Button 
-                          onClick={() => handleOrder(item)}
+                          asChild
                           disabled={!item.isAvailable || employee.walletBalance < item.price}
                           size="sm"
                         >
-                          {employee.walletBalance < item.price ? "Insufficient Balance" : "Order Now"}
+                          <Link href="/payment">
+                            {employee.walletBalance < item.price ? "Insufficient Balance" : "Order Now"}
+                          </Link>
                         </Button>
                       </div>
                     </CardContent>

@@ -9,6 +9,7 @@ import { MenuBrowser } from "@/components/dashboard/employee/menu-browser"
 import { TransactionHistory } from "@/components/dashboard/employee/transaction-history"
 import { EmployeeProfile } from "@/components/dashboard/employee/employee-profile"
 import { MealWallet } from "@/components/dashboard/employee/meal-wallet"
+import Link from "next/link"
 
 export default function EmployeeDashboardPage() {
   // Mock employee data - in real app, this would come from API
@@ -43,9 +44,11 @@ export default function EmployeeDashboardPage() {
             <h1 className="text-3xl font-bold text-foreground">My Meal Wallet</h1>
             <p className="text-muted-foreground">Welcome back, {employee.name}! Manage your meal benefits and loans.</p>
           </div>
-          <Button size="sm">
-            <ShoppingCart className="w-4 h-4 mr-2" />
-            Order Now
+          <Button size="sm" asChild>
+            <Link href="/payment">
+              <ShoppingCart className="w-4 h-4 mr-2" />
+              Order Now
+            </Link>
           </Button>
         </div>
 
