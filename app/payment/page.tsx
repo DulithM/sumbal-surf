@@ -83,6 +83,8 @@ const PaymentPage = () => {
       newErrors.phone = "Phone number is required"
     } else if (!/^[0-9+\-\s()]+$/.test(formData.phone)) {
       newErrors.phone = "Phone number is invalid"
+    } else if (formData.phone.replace(/[^0-9]/g, '').length < 9) {
+      newErrors.phone = "Phone number must be at least 9 digits"
     }
 
     setErrors(newErrors)
@@ -129,26 +131,40 @@ const PaymentPage = () => {
     sessionStorage.setItem("order_id", orderId)
 
       const paymentData = {
-      merchant_id: merchantId,
-      amount: totalAmount,
-      type: config.types.ONE_TIME,
+        merchant_id: merchantId,
+        amount: totalAmount,
+        type: config.types.ONE_TIME,
         order_id: `ORDER_${orderId}`,
         currency: "LKR",
-      return_url: `${window.location.origin}/payment/success?orderId=${orderId}`,
-      response_url: `${window.location.origin}/api/payment/callback`,
+        return_url: `${window.location.origin}/payment/success?orderId=${orderId}`,
+        response_url: `${window.location.origin}/api/payment/callback`,
         first_name: formData.firstName,
         last_name: formData.lastName,
         phone: formData.phone,
         email: formData.email,
-      page_type: "IN_APP",
-        description: formData.email, // User email as description
+        page_type: "IN_APP",
+        description: `Payment for ${formData.firstName} ${formData.lastName} - Order ${orderId}`, // More descriptive
       }
+
+      // Validate required fields before sending
+      if (!merchantId || !secret || !environment) {
+        throw new Error("Missing DirectPay configuration. Please check your environment variables.")
+      }
+
+      if (!paymentData.amount || paymentData.amount <= 0) {
+        throw new Error("Invalid payment amount")
+      }
+
+      console.log("Payment Data:", paymentData) // Debug log
 
       // Generate data string and HMAC signature
       const dataString = CryptoJS.enc.Base64.stringify(
         CryptoJS.enc.Utf8.parse(JSON.stringify(paymentData))
       )
-      const hmacDigest = CryptoJS.HmacSHA256(dataString, secret || "")
+      const hmacDigest = CryptoJS.HmacSHA256(dataString, secret)
+      
+      console.log("Data String:", dataString) // Debug log
+      console.log("HMAC Signature:", hmacDigest.toString()) // Debug log
 
       // Create DirectPay instance
       const directPay = new Init({
@@ -206,24 +222,11 @@ const PaymentPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <EmployeeNavigation />
 
-      <div className="container mx-auto px-4 py-12 pt-24">
+      <div className="container mx-auto px-4 py-12 pt-8">
         <div className="max-w-6xl mx-auto">
           {/* Page Title */}
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-slate-800 mb-4">Complete Your Order</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
-              Secure payment processing with industry-standard encryption. Your information is safe with us.
-            </p>
-            <div className="flex items-center justify-center gap-4">
-              <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200 px-4 py-2">
-                <Lock className="w-4 h-4 mr-2" />
-                SSL Secured
-              </Badge>
-              <Badge variant="outline" className="border-blue-200 text-blue-700 bg-blue-50 px-4 py-2">
-                <CheckCircle className="w-4 h-4 mr-2" />
-                DirectPay Verified
-              </Badge>
-            </div>
           </div>
 
           {/* Payment Status Alert */}
@@ -402,34 +405,6 @@ const PaymentPage = () => {
 
           {/* DirectPay Container */}
           <div id="payment_container" className="mt-12"></div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="bg-slate-50 border-t border-slate-200 mt-16">
-        <div className="container mx-auto px-6 py-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Image 
-                src="/Sumbal Surf Logo.png" 
-                alt="Sumbal Surf Logo" 
-                width={32} 
-                height={32}
-                className="h-8 w-auto border border-slate-300 rounded-lg"
-              />
-              <span className="text-slate-600 font-medium">Sumbal Surf</span>
-            </div>
-            <p className="text-sm text-slate-500 mb-4">
-              Secure payment processing powered by DirectPay
-            </p>
-            <div className="flex items-center justify-center gap-6 text-xs text-slate-400">
-              <span>© 2024 Sumbal Surf</span>
-              <span>•</span>
-              <span>Privacy Policy</span>
-              <span>•</span>
-              <span>Terms of Service</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
