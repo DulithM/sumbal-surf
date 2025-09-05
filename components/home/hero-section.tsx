@@ -69,7 +69,7 @@ export function HeroSection() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
             <Button size="lg" asChild className="text-lg px-10 py-6 bg-[#26c175] hover:bg-[#26c175]/90 text-white shadow-lg font-semibold">
-              <Link href="/payment">
+              <Link href="/">
                 Order Now
               </Link>
             </Button>
